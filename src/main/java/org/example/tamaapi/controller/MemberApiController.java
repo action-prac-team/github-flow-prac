@@ -40,13 +40,11 @@ import static org.example.tamaapi.util.ErrorMessageUtil.NOT_FOUND_MEMBER;
 @RequiredArgsConstructor
 public class MemberApiController {
 
-    private final ColorItemRepository colorItemRepository;
-    private final ColorItemImageRepository colorItemImageRepository;
+
     private final MemberRepository memberRepository;
     private final CacheService cacheService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final TokenProvider tokenProvider;
-    private final OrderRepository orderRepository;
     private final MemberService memberService;
     private final MemberAddressRepository memberAddressRepository;
 
@@ -78,19 +76,6 @@ public class MemberApiController {
         String accessToken = tokenProvider.generateToken(member, ACCESS_TOKEN_DURATION);
         return ResponseEntity.status(HttpStatus.OK).body(new AccessTokenResponse(accessToken));
     }
-
-    /*
-    //포트원 결제 내역에 저장할 멤버 정보
-    @GetMapping("/api/member/payment-setup")
-    public ResponseEntity<MemberPaymentSetUpResponse> member(Principal principal) {
-        if (principal == null || !StringUtils.hasText(principal.getName()))
-            throw new IllegalArgumentException("액세스 토큰이 비었습니다.");
-
-        Long memberId = Long.parseLong(principal.getName());
-        Member member = memberRepository.findById(memberId).orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_MEMBER));
-        return ResponseEntity.status(HttpStatus.OK).body(new MemberPaymentSetUpResponse(member));
-    }
-    */
 
     //포트원 결제 내역에 저장할 멤버 정보
     @GetMapping("/api/member/order-setup")

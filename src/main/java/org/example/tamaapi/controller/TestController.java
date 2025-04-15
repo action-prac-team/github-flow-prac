@@ -1,14 +1,17 @@
 package org.example.tamaapi.controller;
 
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.tamaapi.dto.CharacterCreateRequest;
 import org.example.tamaapi.dto.CharacterRequest;
 import org.example.tamaapi.dto.responseDto.item.ItemImageDto;
 import org.example.tamaapi.repository.item.ColorItemImageRepository;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 
 @RestController
 @Slf4j
@@ -56,6 +59,7 @@ public class TestController {
     @GetMapping(value = "/api/find")
     public List<ItemImageDto> find() {
         return colorItemImageRepository.findAll().stream().map(ItemImageDto::new).toList();
+
     }
 
 }

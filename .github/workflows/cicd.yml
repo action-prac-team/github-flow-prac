@@ -1,4 +1,4 @@
-name: CIv3
+name: CICDv2
 
 on:
   push:
@@ -9,6 +9,9 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
+      - run: touch ./src/main/resources/application.yml
+      - run: echo "${{ secrets.APPLICATION }}" > ./src/main/resources/application.yml
+      - run: cat ./src/main/resources/application.yml
 
       - uses: actions/setup-java@v3
         with:

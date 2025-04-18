@@ -78,6 +78,10 @@ public class Init {
         private final OrderItemRepository orderItemRepository;
 
         public void initCategory() {
+
+            if(!categoryRepository.findAll().isEmpty())
+                throw  new IllegalArgumentException("이미 초기화 됐습니다");
+
             Category outer = Category.builder().name("아우터").build();
             categoryRepository.save(outer);
 

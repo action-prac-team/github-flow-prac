@@ -22,7 +22,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build with Gradle
-        run: ./gradlew clean bootJar
+        run: ./gradlew clean bootJar --args='--spring.profiles.active=init'
 
       - name: Get current time
         uses: josStorer/get-current-time@v2.0.2

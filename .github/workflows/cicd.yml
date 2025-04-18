@@ -1,4 +1,4 @@
-name: CICDv7
+name: CICDv8
 
 on:
   push:
